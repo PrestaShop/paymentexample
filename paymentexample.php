@@ -24,6 +24,8 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 
+use PrestaShop\PrestaShop\Core\Business\Payment\PaymentOption;
+
 if (!defined('_PS_VERSION_')) {
     exit;
 }
@@ -107,7 +109,7 @@ class PaymentExample extends PaymentModule
 
     public function getOfflinePaymentOption()
     {
-        $offlineOption = new Core_Business_Payment_PaymentOption();
+        $offlineOption = new PaymentOption();
         $offlineOption->setCallToActionText($this->l('Pay offline'))
                       ->setAction($this->context->link->getModuleLink($this->name, 'validation', array(), true))
                       ->setAdditionalInformation($this->context->smarty->fetch(implode(DIRECTORY_SEPARATOR, [__DIR__, 'views', 'templates', 'front', 'payment_infos.tpl'])))
@@ -118,7 +120,7 @@ class PaymentExample extends PaymentModule
 
     public function getExternalPaymentOption()
     {
-        $externalOption = new Core_Business_Payment_PaymentOption();
+        $externalOption = new PaymentOption();
         $externalOption->setCallToActionText($this->l('Pay external'))
                        ->setAction($this->context->link->getModuleLink($this->name, 'validation', array(), true))
                        ->setMethod('POST')
@@ -137,7 +139,7 @@ class PaymentExample extends PaymentModule
 
     public function getEmbeddedPaymentOption()
     {
-        $embeddedOption = new Core_Business_Payment_PaymentOption();
+        $embeddedOption = new PaymentOption();
         $embeddedOption->setCallToActionText($this->l('Pay embedded'))
                        ->setForm($this->generateForm())
                        ->setAdditionalInformation($this->context->smarty->fetch(implode(DIRECTORY_SEPARATOR, [__DIR__, 'views', 'templates', 'front', 'payment_infos.tpl'])))
@@ -148,7 +150,7 @@ class PaymentExample extends PaymentModule
 
     public function getIframePaymentOption()
     {
-        $iframeOption = new Core_Business_Payment_PaymentOption();
+        $iframeOption = new PaymentOption();
         $iframeOption->setCallToActionText($this->l('Pay iframe'))
                      ->setAction($this->context->link->getModuleLink($this->name, 'iframe', array(), true))
                      ->setAdditionalInformation($this->context->smarty->fetch(implode(DIRECTORY_SEPARATOR, [__DIR__, 'views', 'templates', 'front', 'payment_infos.tpl'])))
