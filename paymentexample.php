@@ -112,7 +112,7 @@ class PaymentExample extends PaymentModule
         $offlineOption = new PaymentOption();
         $offlineOption->setCallToActionText($this->l('Pay offline'))
                       ->setAction($this->context->link->getModuleLink($this->name, 'validation', array(), true))
-                      ->setAdditionalInformation($this->context->smarty->fetch(implode(DIRECTORY_SEPARATOR, [__DIR__, 'views', 'templates', 'front', 'payment_infos.tpl'])))
+                      ->setAdditionalInformation($this->context->smarty->fetch('module:paymentexample/views/templates/front/payment_infos.tpl'))
                       ->setLogo(Media::getMediaPath(_PS_MODULE_DIR_.$this->name.'/payment.jpg'));
 
         return $offlineOption;
@@ -131,7 +131,7 @@ class PaymentExample extends PaymentModule
                                 'value' =>'12345689',
                             ],
                         ])
-                       ->setAdditionalInformation($this->context->smarty->fetch(implode(DIRECTORY_SEPARATOR, [__DIR__, 'views', 'templates', 'front', 'payment_infos.tpl'])))
+                       ->setAdditionalInformation($this->context->smarty->fetch('module:paymentexample/views/templates/front/payment_infos.tpl'))
                        ->setLogo(Media::getMediaPath(_PS_MODULE_DIR_.$this->name.'/payment.jpg'));
 
         return $externalOption;
@@ -142,7 +142,7 @@ class PaymentExample extends PaymentModule
         $embeddedOption = new PaymentOption();
         $embeddedOption->setCallToActionText($this->l('Pay embedded'))
                        ->setForm($this->generateForm())
-                       ->setAdditionalInformation($this->context->smarty->fetch(implode(DIRECTORY_SEPARATOR, [__DIR__, 'views', 'templates', 'front', 'payment_infos.tpl'])))
+                       ->setAdditionalInformation($this->context->smarty->fetch('module:paymentexample/views/templates/front/payment_infos.tpl'))
                        ->setLogo(Media::getMediaPath(_PS_MODULE_DIR_.$this->name.'/payment.jpg'));
 
         return $embeddedOption;
@@ -153,7 +153,7 @@ class PaymentExample extends PaymentModule
         $iframeOption = new PaymentOption();
         $iframeOption->setCallToActionText($this->l('Pay iframe'))
                      ->setAction($this->context->link->getModuleLink($this->name, 'iframe', array(), true))
-                     ->setAdditionalInformation($this->context->smarty->fetch(implode(DIRECTORY_SEPARATOR, [__DIR__, 'views', 'templates', 'front', 'payment_infos.tpl'])))
+                     ->setAdditionalInformation($this->context->smarty->fetch('module:paymentexample/views/templates/front/payment_infos.tpl'))
                      ->setLogo(Media::getMediaPath(_PS_MODULE_DIR_.$this->name.'/payment.jpg'));
 
         return $iframeOption;
@@ -177,15 +177,6 @@ class PaymentExample extends PaymentModule
             'years' => $years,
         ]);
 
-        return $this->context->smarty->fetch(
-            implode(
-                DIRECTORY_SEPARATOR,
-                [__DIR__,
-                'views',
-                'templates',
-                'front',
-                'payment_form.tpl']
-            )
-        );
+        return $this->context->smarty->fetch('module:views/templates/front/payment_form.tpl');
     }
 }
