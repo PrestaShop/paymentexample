@@ -177,6 +177,6 @@ class PaymentExample extends PaymentModule
             'years' => $years,
         ]);
 
-        return $this->context->smarty->fetch('module:views/templates/front/payment_form.tpl');
+        return $this->context->smarty->fetch('module:paymentexample/views/templates/front/payment_form.tpl');
     }
 }
