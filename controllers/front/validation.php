@@ -42,7 +42,7 @@ class PaymentExampleValidationModuleFrontController extends ModuleFrontControlle
         // Check that this payment option is still available in case the customer changed his address just before the end of the checkout process
         $authorized = false;
         foreach (Module::getPaymentModules() as $module) {
-            if ($module['name'] == 'mypaymentmodule') {
+            if ($module['name'] == 'paymentexample') {
                 $authorized = true;
                 break;
             }
