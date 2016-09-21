@@ -31,6 +31,7 @@ class PaymentExampleIframeModuleFrontController extends ModuleFrontController
 {
     public function initContent()
     {
+        parent::initContent();
         $this->context->smarty->assign([
             'src' => 'http://www.prestashop.com',
         ]);

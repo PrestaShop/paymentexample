@@ -123,7 +123,6 @@ class PaymentExample extends PaymentModule
         $externalOption = new PaymentOption();
         $externalOption->setCallToActionText($this->l('Pay external'))
                        ->setAction($this->context->link->getModuleLink($this->name, 'validation', array(), true))
-                       ->setMethod('POST')
                        ->setInputs([
                             'token' => [
                                 'name' =>'token',
@@ -152,7 +151,6 @@ class PaymentExample extends PaymentModule
     {
         $iframeOption = new PaymentOption();
         $iframeOption->setCallToActionText($this->l('Pay iframe'))
-                     ->setAction($this->context->link->getModuleLink($this->name, 'iframe', array(), true))
                      ->setAdditionalInformation($this->context->smarty->fetch('module:paymentexample/views/templates/front/payment_infos.tpl'))
                      ->setLogo(Media::getMediaPath(_PS_MODULE_DIR_.$this->name.'/payment.jpg'));
 
