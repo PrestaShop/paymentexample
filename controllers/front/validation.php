@@ -56,7 +56,8 @@ class PaymentExampleValidationModuleFrontController extends ModuleFrontControlle
             'params' => $_REQUEST,
         ]);
 
-        $this->setTemplate('payment_return.tpl');
+        //$this->setTemplate('payment_return.tpl');
+        $this->setTemplate('module:paymentexample/views/templates/front/payment_return.tpl');
 
 
         // $customer = new Customer($cart->id_customer);

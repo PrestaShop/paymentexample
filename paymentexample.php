@@ -151,6 +151,7 @@ class PaymentExample extends PaymentModule
     {
         $iframeOption = new PaymentOption();
         $iframeOption->setCallToActionText($this->l('Pay iframe'))
+                     ->setAction($this->context->link->getModuleLink($this->name, 'iframe', array(), true))
                      ->setAdditionalInformation($this->context->smarty->fetch('module:paymentexample/views/templates/front/payment_infos.tpl'))
                      ->setLogo(Media::getMediaPath(_PS_MODULE_DIR_.$this->name.'/payment.jpg'));
 

@@ -36,6 +36,6 @@ class PaymentExampleIframeModuleFrontController extends ModuleFrontController
             'src' => 'http://www.prestashop.com',
         ]);
 
-        $this->setTemplate('iframe.tpl');
+        $this->setTemplate('module:paymentexample/views/templates/front/iframe.tpl');
     }
 }
