@@ -1,0 +1,27 @@
+includes:
+	- %currentWorkingDirectory%/vendor/prestashop/php-dev-tools/phpstan/ps-module-extension.neon
+
+parameters:
+	paths:
+		# From PHPStan 0.12, paths to check are relative to the neon file
+		- ../../controllers
+		- ../../paymentexample.php
+	reportUnmatchedIgnoredErrors: false
+	ignoreErrors:
+		- '#Property ModuleCore::\$version \(float\) does not accept string.#'
+		- '#Parameter \#7 \$currency_special of method PaymentModuleCore::validateOrder\(\) expects null, int given.#'
+		- '#Parameter \#9 \$secure_key of method PaymentModuleCore::validateOrder\(\) expects bool, string given.#'
+		- '#Strict comparison using === between false and string will always evaluate to false.#'
+		- '#Strict comparison using === between false and true will always evaluate to false.#'
+		- '#Parameter \#1 \$id of class Customer constructor expects null, int given.#'
+		- '#Parameter \#1 \$hook_name of method ModuleCore::registerHook\(\) expects string, array<int, string> given.#'
+		- '#Parameter \#6 \$idShop of method LinkCore::getModuleLink\(\) expects null, int given.#'
+		- '#Parameter \#1 \$id_hook of method ModuleCore::updatePosition\(\) expects bool, int given.#'
+		- '#Property TabCore::\$name \(string\) does not accept array.#'
+		- '#Access to an undefined property PaymentModule::\$currentOrderReference.#'
+		- '#Property CustomerCore::\$passwd \(int\) does not accept bool\|string.#'
+		- '#Parameter \#4 \$ssl of method LinkCore::getModuleLink\(\) expects null, true given.#'
+		- '#Parameter \#1 \$id of class Currency constructor expects null, int given.#'
+		- '#Property OrderStateCore::\$name \(string\) does not accept array.#'
+
+	level: 5
