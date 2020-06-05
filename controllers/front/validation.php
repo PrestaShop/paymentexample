@@ -19,7 +19,7 @@
  */
 
 /**
- * @since 1.5.0
+ * This Controller receive customer after approval on bank payment page
  */
 class PaymentExampleValidationModuleFrontController extends ModuleFrontController
 {
@@ -29,9 +29,7 @@ class PaymentExampleValidationModuleFrontController extends ModuleFrontControlle
     public $module;
 
     /**
-     * @see FrontController::postProcess()
-     *
-     * @throws PrestaShopException
+     * {@inheritdoc}
      */
     public function postProcess()
     {

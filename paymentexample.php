@@ -66,9 +66,6 @@ class PaymentExample extends PaymentModule
 
     /**
      * @return bool
-     *
-     * @throws PrestaShopDatabaseException
-     * @throws PrestaShopException
      */
     public function install()
     {
@@ -79,8 +76,6 @@ class PaymentExample extends PaymentModule
 
     /**
      * @return bool
-     *
-     * @throws PrestaShopException
      */
     public function uninstall()
     {
@@ -92,8 +87,6 @@ class PaymentExample extends PaymentModule
      * Module configuration page
      *
      * @return string
-     *
-     * @throws SmartyException
      */
     public function getContent()
     {
@@ -112,10 +105,6 @@ class PaymentExample extends PaymentModule
      * This hook is used to save additional information will be displayed on BO Order View, Payment block with "Details" button
      *
      * @param array $params
-     *
-     * @return void
-     *
-     * @throws PrestaShopException
      */
     public function hookActionPaymentCCAdd(array $params)
     {
@@ -199,8 +188,6 @@ class PaymentExample extends PaymentModule
      * @param array $params
      *
      * @return array Should always return an array
-     *
-     * @throws SmartyException
      */
     public function hookPaymentOptions(array $params)
     {
@@ -227,10 +214,6 @@ class PaymentExample extends PaymentModule
      * @param array $params
      *
      * @return string
-     *
-     * @throws PrestaShopDatabaseException
-     * @throws PrestaShopException
-     * @throws SmartyException
      */
     public function hookDisplayAdminOrderLeft(array $params)
     {
@@ -259,10 +242,6 @@ class PaymentExample extends PaymentModule
      * @param array $params
      *
      * @return string
-     *
-     * @throws PrestaShopDatabaseException
-     * @throws PrestaShopException
-     * @throws SmartyException
      */
     public function hookDisplayAdminOrderMainBottom(array $params)
     {
@@ -289,8 +268,6 @@ class PaymentExample extends PaymentModule
      * @param array $params
      *
      * @return string
-     *
-     * @throws SmartyException
      */
     public function hookDisplayOrderConfirmation(array $params)
     {
@@ -318,8 +295,6 @@ class PaymentExample extends PaymentModule
      * @param array $params
      *
      * @return string
-     *
-     * @throws SmartyException
      */
     public function hookDisplayOrderDetail(array $params)
     {
@@ -347,8 +322,6 @@ class PaymentExample extends PaymentModule
      * @param array $params
      *
      * @return string
-     *
-     * @throws SmartyException
      */
     public function hookDisplayPaymentByBinaries(array $params)
     {
@@ -372,8 +345,6 @@ class PaymentExample extends PaymentModule
      * @param array $params
      *
      * @return string
-     *
-     * @throws SmartyException
      */
     public function hookDisplayPaymentReturn(array $params)
     {
@@ -401,8 +372,6 @@ class PaymentExample extends PaymentModule
      * @param array $params
      *
      * @return string
-     *
-     * @throws SmartyException
      */
     public function hookDisplayPDFInvoice(array $params)
     {
@@ -460,8 +429,6 @@ class PaymentExample extends PaymentModule
      * Factory of PaymentOption for Offline Payment
      *
      * @return PaymentOption
-     *
-     * @throws SmartyException
      */
     private function getOfflinePaymentOption()
     {
@@ -479,8 +446,6 @@ class PaymentExample extends PaymentModule
      * Factory of PaymentOption for External Payment
      *
      * @return PaymentOption
-     *
-     * @throws SmartyException
      */
     private function getExternalPaymentOption()
     {
@@ -505,8 +470,6 @@ class PaymentExample extends PaymentModule
      * Factory of PaymentOption for Embedded Payment
      *
      * @return PaymentOption
-     *
-     * @throws SmartyException
      */
     private function getEmbeddedPaymentOption()
     {
@@ -524,8 +487,6 @@ class PaymentExample extends PaymentModule
      * Factory of PaymentOption for binary Payment
      *
      * @return PaymentOption
-     *
-     * @throws SmartyException
      */
     private function getBinaryPaymentOption()
     {
@@ -543,8 +504,6 @@ class PaymentExample extends PaymentModule
      * Generate a form for Embedded Payment
      *
      * @return string
-     *
-     * @throws SmartyException
      */
     private function generateEmbeddedForm()
     {
@@ -557,9 +516,6 @@ class PaymentExample extends PaymentModule
 
     /**
      * @return bool
-     *
-     * @throws PrestaShopDatabaseException
-     * @throws PrestaShopException
      */
     private function installOrderState()
     {
@@ -592,9 +548,6 @@ class PaymentExample extends PaymentModule
      * @param bool $isDeleted Set OrderState deleted
      *
      * @return bool
-     *
-     * @throws PrestaShopDatabaseException
-     * @throws PrestaShopException
      */
     private function createOrderState(
         $configurationKey,
@@ -691,8 +644,6 @@ class PaymentExample extends PaymentModule
      * We mark them as deleted to not break passed Orders
      *
      * @return bool
-     *
-     * @throws PrestaShopException
      */
     private function deleteOrderState()
     {

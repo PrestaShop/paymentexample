@@ -19,14 +19,12 @@
  */
 
 /**
- * @since 1.5.0
+ * This Controller simulate an external payment gateway
  */
 class PaymentExampleExternalModuleFrontController extends ModuleFrontController
 {
     /**
-     * @see FrontController::postProcess()
-     *
-     * @throws PrestaShopException
+     * {@inheritdoc}
      */
     public function postProcess()
     {
@@ -55,6 +53,9 @@ class PaymentExampleExternalModuleFrontController extends ModuleFrontController
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function initContent()
     {
         parent::initContent();
