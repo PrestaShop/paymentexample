@@ -26,3 +26,11 @@
     </button>
   </form>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    prestashop.on('termsUpdated', (event) => {
+      console.log('termsUpdated - isChecked : ' + event.isChecked);
+    });
+  });
+</script>
