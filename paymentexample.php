@@ -34,6 +34,7 @@ class PaymentExample extends PaymentModule
         'paymentOptions',
         'displayAdminOrderLeft',
         'displayAdminOrderMainBottom',
+        'displayCustomerAccount',
         'displayOrderConfirmation',
         'displayOrderDetail',
         'displayPaymentByBinaries',
@@ -54,6 +55,8 @@ class PaymentExample extends PaymentModule
             'max' => _PS_VERSION_,
         ];
         $this->controllers = [
+            'account',
+            'cancel',
             'external',
             'validation',
         ];
@@ -260,6 +263,27 @@ class PaymentExample extends PaymentModule
         ]);
 
         return $this->context->smarty->fetch('module:paymentexample/views/templates/hook/displayAdminOrderMainBottom.tpl');
+    }
+
+    /**
+     * This hook is used to display information in customer account
+     *
+     * @param array $params
+     *
+     * @return string
+     */
+    public function hookDisplayCustomerAccount(array $params)
+    {
+        $this->context->smarty->assign([
+            'moduleDisplayName' => $this->displayName,
+            'moduleLogoSrc' => $this->getPathUri() . 'logo.png',
+            'transactionsLink' => $this->context->link->getModuleLink(
+                $this->name,
+                'account'
+            ),
+        ]);
+
+        return $this->context->smarty->fetch('module:paymentexample/views/templates/hook/displayCustomerAccount.tpl');
     }
 
     /**

@@ -23,5 +23,7 @@ parameters:
 		- '#Parameter \#4 \$ssl of method LinkCore::getModuleLink\(\) expects null, true given.#'
 		- '#Parameter \#1 \$id of class Currency constructor expects null, int given.#'
 		- '#Property OrderStateCore::\$name \(string\) does not accept array.#'
+		- '#Parameter \#1 \$master of static method DbCore::getInstance\(\) expects bool, int given.#'
+		- '#Parameter \#2 \$currency of static method ToolsCore::displayPrice\(\) expects array\|object\|null, int given.#'
 
 	level: 5
