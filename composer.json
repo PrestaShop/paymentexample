@@ -33,5 +33,6 @@
     },
     "require-dev": {
         "prestashop/php-dev-tools": "~3.0"
-    }
+    },
+    "author": "PrestaShop"
 }
