@@ -232,6 +232,8 @@ class PaymentExample extends PaymentModule
 
         $this->context->smarty->assign([
             'moduleName' => $this->name,
+            'moduleDisplayName' => $this->displayName,
+            'moduleLogoSrc' => $this->getPathUri() . 'logo.png',
         ]);
 
         return $this->context->smarty->fetch('module:paymentexample/views/templates/hook/displayAdminOrderLeft.tpl');
@@ -260,6 +262,8 @@ class PaymentExample extends PaymentModule
 
         $this->context->smarty->assign([
             'moduleName' => $this->name,
+            'moduleDisplayName' => $this->displayName,
+            'moduleLogoSrc' => $this->getPathUri() . 'logo.png',
         ]);
 
         return $this->context->smarty->fetch('module:paymentexample/views/templates/hook/displayAdminOrderMainBottom.tpl');
@@ -306,8 +310,17 @@ class PaymentExample extends PaymentModule
             return '';
         }
 
+        $transaction = '';
+
+        if ($order->getOrderPaymentCollection()->count()) {
+            /** @var OrderPayment $orderPayment */
+            $orderPayment = $order->getOrderPaymentCollection()->getFirst();
+            $transaction = $orderPayment->transaction_id;
+        }
+
         $this->context->smarty->assign([
             'moduleName' => $this->name,
+            'transaction' => $transaction,
         ]);
 
         return $this->context->smarty->fetch('module:paymentexample/views/templates/hook/displayOrderConfirmation.tpl');
@@ -333,8 +346,17 @@ class PaymentExample extends PaymentModule
             return '';
         }
 
+        $transaction = '';
+
+        if ($order->getOrderPaymentCollection()->count()) {
+            /** @var OrderPayment $orderPayment */
+            $orderPayment = $order->getOrderPaymentCollection()->getFirst();
+            $transaction = $orderPayment->transaction_id;
+        }
+
         $this->context->smarty->assign([
             'moduleName' => $this->name,
+            'transaction' => $transaction,
         ]);
 
         return $this->context->smarty->fetch('module:paymentexample/views/templates/hook/displayOrderDetail.tpl');
@@ -383,8 +405,21 @@ class PaymentExample extends PaymentModule
             return '';
         }
 
+        $transaction = '';
+
+        if ($order->getOrderPaymentCollection()->count()) {
+            /** @var OrderPayment $orderPayment */
+            $orderPayment = $order->getOrderPaymentCollection()->getFirst();
+            $transaction = $orderPayment->transaction_id;
+        }
+
         $this->context->smarty->assign([
             'moduleName' => $this->name,
+            'transaction' => $transaction,
+            'transactionsLink' => $this->context->link->getModuleLink(
+                $this->name,
+                'account'
+            ),
         ]);
 
         return $this->context->smarty->fetch('module:paymentexample/views/templates/hook/displayPaymentReturn.tpl');
@@ -416,8 +451,17 @@ class PaymentExample extends PaymentModule
             return '';
         }
 
+        $transaction = '';
+
+        if ($order->getOrderPaymentCollection()->count()) {
+            /** @var OrderPayment $orderPayment */
+            $orderPayment = $order->getOrderPaymentCollection()->getFirst();
+            $transaction = $orderPayment->transaction_id;
+        }
+
         $this->context->smarty->assign([
             'moduleName' => $this->name,
+            'transaction' => $transaction,
         ]);
 
         return $this->context->smarty->fetch('module:paymentexample/views/templates/hook/displayPDFInvoice.tpl');
@@ -548,7 +592,16 @@ class PaymentExample extends PaymentModule
             [
                 'en' => 'Awaiting offline payment',
             ],
-            '#00ffff'
+            '#00ffff',
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            'awaiting-offline-payment'
         );
     }
 

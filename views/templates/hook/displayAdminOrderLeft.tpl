@@ -17,4 +17,12 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
-<div class="alert alert-info">WIP Hook displayAdminOrderLeft <strong>{$moduleName}</strong></div>
+<section id="{$moduleName}-displayAdminOrderLeft">
+  <div class="panel">
+    <div class="panel-heading">
+      <img src="{$moduleLogoSrc}" alt="{$moduleDisplayName}" width="15" height="15">
+      {$moduleDisplayName}
+    </div>
+    <p>{l s='This order has been paid with %moduleDisplayName%.' mod='paymentexample' sprintf=['%moduleDisplayName%' => $moduleDisplayName]}</p>
+  </div>
+</section>

@@ -17,4 +17,6 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
-<p>WIP Hook displayPDFInvoice <strong>{$moduleName}</strong></p>
+{if $transaction}
+  <p>{l s='Your transaction reference is %transaction%.' mod='paymentexample' sprintf=['%transaction%' => $transaction]}</p>
+{/if}

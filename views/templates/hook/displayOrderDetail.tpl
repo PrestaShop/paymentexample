@@ -17,4 +17,8 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
-<div class="alert alert-info">WIP Hook displayOrderDetail <strong>{$moduleName}</strong></div>
+{if $transaction}
+  <section id="{$moduleName}-displayOrderDetail" class="box">
+    <p>{l s='Your transaction reference is %transaction%.' mod='paymentexample' sprintf=['%transaction%' => $transaction]}</p>
+  </section>
+{/if}
