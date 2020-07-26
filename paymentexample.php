@@ -27,7 +27,11 @@ if (!defined('_PS_VERSION_')) {
 class PaymentExample extends PaymentModule
 {
     const CONFIG_OS_OFFLINE = 'PAYMENTEXAMPLE_OS_OFFLINE';
-
+    const CONFIG_PO_OFFLINE_ENABLED = 'PAYMENTEXAMPLE_PO_OFFLINE_ENABLED';
+    const CONFIG_PO_EXTERNAL_ENABLED = 'PAYMENTEXAMPLE_PO_EXTERNAL_ENABLED';
+    const CONFIG_PO_EMBEDDED_ENABLED = 'PAYMENTEXAMPLE_PO_EMBEDDED_ENABLED';
+    const CONFIG_PO_BINARY_ENABLED = 'PAYMENTEXAMPLE_PO_BINARY_ENABLED';
+    const MODULE_ADMIN_CONTROLLER = 'AdminConfigurePaymentExample';
     const HOOKS = [
         'actionPaymentCCAdd',
         'actionObjectShopAddAfter',
@@ -74,7 +78,9 @@ class PaymentExample extends PaymentModule
     {
         return (bool) parent::install()
             && (bool) $this->registerHook(static::HOOKS)
-            && (bool) $this->installOrderState();
+            && $this->installOrderState()
+            && $this->installConfiguration()
+            && $this->installTabs();
     }
 
     /**
@@ -83,25 +89,18 @@ class PaymentExample extends PaymentModule
     public function uninstall()
     {
         return (bool) parent::uninstall()
-            && (bool) $this->deleteOrderState();
+            && $this->deleteOrderState()
+            && $this->uninstallConfiguration()
+            && $this->uninstallTabs();
     }
 
     /**
      * Module configuration page
-     *
-     * @return string
      */
     public function getContent()
     {
-        if (empty(Currency::checkPaymentCurrencies($this->id))) {
-            $this->warning = $this->l('No currency has been set for this module.');
-        }
-
-        $this->context->smarty->assign([
-            'moduleName' => $this->name,
-        ]);
-
-        return $this->context->smarty->fetch('module:paymentexample/views/templates/admin/configure.tpl');
+        // Redirect to our ModuleAdminController when click on Configure button
+        Tools::redirectAdmin($this->context->link->getAdminLink(static::MODULE_ADMIN_CONTROLLER));
     }
 
     /**
@@ -131,7 +130,7 @@ class PaymentExample extends PaymentModule
             }
         }
 
-        if ('embedded' !== Tools::getValue('option')) {
+        if ('embedded' !== Tools::getValue('option') || !Configuration::get(static::CONFIG_PO_EMBEDDED_ENABLED)) {
             return;
         }
 
@@ -201,12 +200,25 @@ class PaymentExample extends PaymentModule
             return [];
         }
 
-        return [
-            $this->getOfflinePaymentOption(),
-            $this->getExternalPaymentOption(),
-            $this->getEmbeddedPaymentOption(),
-            $this->getBinaryPaymentOption(),
-        ];
+        $paymentOptions = [];
+
+        if (Configuration::get(static::CONFIG_PO_OFFLINE_ENABLED)) {
+            $paymentOptions[] = $this->getOfflinePaymentOption();
+        }
+
+        if (Configuration::get(static::CONFIG_PO_EXTERNAL_ENABLED)) {
+            $paymentOptions[] = $this->getExternalPaymentOption();
+        }
+
+        if (Configuration::get(static::CONFIG_PO_EMBEDDED_ENABLED)) {
+            $paymentOptions[] = $this->getEmbeddedPaymentOption();
+        }
+
+        if (Configuration::get(static::CONFIG_PO_BINARY_ENABLED)) {
+            $paymentOptions[] = $this->getBinaryPaymentOption();
+        }
+
+        return $paymentOptions;
     }
 
     /**
@@ -737,5 +749,73 @@ class PaymentExample extends PaymentModule
         }
 
         return $result;
+    }
+
+    /**
+     * Install default module configuration
+     *
+     * @return bool
+     */
+    private function installConfiguration()
+    {
+        return (bool) Configuration::updateGlobalValue(static::CONFIG_PO_OFFLINE_ENABLED, '1')
+            && (bool) Configuration::updateGlobalValue(static::CONFIG_PO_EXTERNAL_ENABLED, '1')
+            && (bool) Configuration::updateGlobalValue(static::CONFIG_PO_EMBEDDED_ENABLED, '1')
+            && (bool) Configuration::updateGlobalValue(static::CONFIG_PO_BINARY_ENABLED, '1');
+    }
+
+    /**
+     * Uninstall module configuration
+     *
+     * @return bool
+     */
+    private function uninstallConfiguration()
+    {
+        return (bool) Configuration::deleteByName(static::CONFIG_PO_OFFLINE_ENABLED)
+            && (bool) Configuration::deleteByName(static::CONFIG_PO_EXTERNAL_ENABLED)
+            && (bool) Configuration::deleteByName(static::CONFIG_PO_EMBEDDED_ENABLED)
+            && (bool) Configuration::deleteByName(static::CONFIG_PO_BINARY_ENABLED);
+    }
+
+    /**
+     * Install Tabs
+     *
+     * @return bool
+     */
+    public function installTabs()
+    {
+        if (Tab::getIdFromClassName(static::MODULE_ADMIN_CONTROLLER)) {
+            return true;
+        }
+
+        $tab = new Tab();
+        $tab->class_name = static::MODULE_ADMIN_CONTROLLER;
+        $tab->module = $this->name;
+        $tab->active = true;
+        $tab->id_parent = -1;
+        $tab->name = array_fill_keys(
+            Language::getIDs(false),
+            $this->displayName
+        );
+
+        return (bool) $tab->add();
+    }
+
+    /**
+     * Uninstall Tabs
+     *
+     * @return bool
+     */
+    public function uninstallTabs()
+    {
+        $id_tab = (int) Tab::getIdFromClassName(static::MODULE_ADMIN_CONTROLLER);
+
+        if ($id_tab) {
+            $tab = new Tab($id_tab);
+
+            return (bool) $tab->delete();
+        }
+
+        return true;
     }
 }

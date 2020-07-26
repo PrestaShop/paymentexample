@@ -33,7 +33,7 @@ class PaymentExampleValidationModuleFrontController extends ModuleFrontControlle
      */
     public function postProcess()
     {
-        if (false === $this->checkIfContextIsValid() || false === $this->checkIfContextIsValid()) {
+        if (false === $this->checkIfContextIsValid() || false === $this->checkIfPaymentOptionIsAvailable()) {
             Tools::redirect($this->context->link->getPageLink(
                 'order',
                 true,

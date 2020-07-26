@@ -28,7 +28,7 @@ class PaymentExampleExternalModuleFrontController extends ModuleFrontController
      */
     public function postProcess()
     {
-        if (false === $this->checkIfContextIsValid() || false === $this->checkIfContextIsValid()) {
+        if (false === $this->checkIfContextIsValid() || false === $this->checkIfPaymentOptionIsAvailable()) {
             Tools::redirect($this->context->link->getPageLink(
                 'order',
                 true,
@@ -88,6 +88,10 @@ class PaymentExampleExternalModuleFrontController extends ModuleFrontController
      */
     private function checkIfPaymentOptionIsAvailable()
     {
+        if (!Configuration::get(PaymentExample::CONFIG_PO_EXTERNAL_ENABLED)) {
+            return false;
+        }
+
         $modules = Module::getPaymentModules();
 
         if (empty($modules)) {
