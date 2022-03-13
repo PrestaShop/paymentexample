@@ -47,7 +47,7 @@ class PaymentExampleAccountModuleFrontController extends ModuleFrontController
         $orderPaymentsQuery->where('o.id_customer = ' . (int) $this->context->customer->id);
         $orderPaymentsQuery->where('o.module = "' . pSQL($this->module->name) . '"');
 
-        $orderPayments = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($orderPaymentsQuery);
+        $orderPayments = Db::getInstance((bool) _PS_USE_SQL_SLAVE_)->executeS($orderPaymentsQuery);
 
         if (false === empty($orderPayments)) {
             foreach ($orderPayments as $key => $orderPayment) {

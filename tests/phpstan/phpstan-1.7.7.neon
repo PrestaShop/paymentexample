@@ -6,3 +6,5 @@ parameters:
     - '#Parameter \#9 \$secure_key of method PaymentModuleCore\:\:validateOrder\(\) expects bool, string given.#'
     - '#Parameter \#7 \$currency_special of method PaymentModuleCore\:\:validateOrder\(\) expects null, int given.#'
     - '#Property OrderStateCore\:\:\$name \(string\) does not accept array<int, mixed>.#'
+    - '#Property TabCore\:\:\$name \(string\) does not accept array<string>.#'
+    - '#Parameter \#2 \$currency of static method ToolsCore\:\:displayPrice\(\) expects array\|object\|null, int given.#'
