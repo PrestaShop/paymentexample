@@ -1,0 +1,12 @@
+includes:
+	- %currentWorkingDirectory%/tests/phpstan/phpstan.neon
+
+parameters:
+  ignoreErrors:
+    - '#Parameter \#1 \$id of class Customer constructor expects null, int given.#'
+    - '#Parameter \#9 \$secure_key of method PaymentModuleCore\:\:validateOrder\(\) expects bool, string given.#'
+    - '#Parameter \#4 \$ssl of method LinkCore\:\:getModuleLink\(\) expects null, true given.#'
+    - '#Parameter \#7 \$currency_special of method PaymentModuleCore\:\:validateOrder\(\) expects null, int given.#'
+    - '#Property OrderStateCore\:\:\$name \(string\) does not accept array<int, mixed>.#'
+    - '#Parameter \#1 \$hook_name of method ModuleCore\:\:registerHook\(\) expects string, array<int, string> given.#'
+    - '#Parameter \#1 \$id of class Currency constructor expects null, int given.#'

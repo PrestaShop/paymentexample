@@ -18,7 +18,7 @@
  *}
 
 <section id="{$moduleName}-displayPaymentReturn">
-  {if $transaction}
+  {if !empty($transaction)}
     <p>{l s='Your transaction reference is %transaction%.' mod='paymentexample' sprintf=['%transaction%' => $transaction]}</p>
   {/if}
   {if $customer.is_logged && !$customer.is_guest}

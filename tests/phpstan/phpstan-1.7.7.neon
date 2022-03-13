@@ -1,0 +1,8 @@
+includes:
+	- %currentWorkingDirectory%/tests/phpstan/phpstan.neon
+
+parameters:
+  ignoreErrors:
+    - '#Parameter \#9 \$secure_key of method PaymentModuleCore\:\:validateOrder\(\) expects bool, string given.#'
+    - '#Parameter \#7 \$currency_special of method PaymentModuleCore\:\:validateOrder\(\) expects null, int given.#'
+    - '#Property OrderStateCore\:\:\$name \(string\) does not accept array<int, mixed>.#'
