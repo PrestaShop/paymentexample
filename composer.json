@@ -1,19 +1,38 @@
 {
-  "name": "prestashop/paymentexample",
-  "description": "PrestaShop module paymentexample",
-  "homepage": "https://github.com/PrestaShop/paymentexample",
-  "license": "AFL-3.0",
-  "authors": [
-    {
-      "name": "PrestaShop SA",
-      "email": "contact@prestashop.com"
-    }
-  ],
-  "require": {
-    "php": ">=5.3.2"
-  },
-  "config": {
-    "preferred-install": "dist"
-  },
-  "type": "prestashop-module"
+    "type": "prestashop-module",
+    "name": "prestashop/paymentexample",
+    "description": "PrestaShop module paymentexample",
+    "homepage": "https://github.com/PrestaShop/paymentexample",
+    "license": "AFL-3.0",
+    "authors": [
+        {
+            "name": "PrestaShop SA",
+            "email": "contact@prestashop.com"
+        }
+    ],
+    "config": {
+        "platform": {
+            "php": "5.6.0"
+        },
+        "preferred-install": "dist",
+        "classmap-authoritative": true,
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "prepend-autoloader": false
+    },
+    "autoload": {
+        "classmap": [
+            "controllers",
+            "paymentexample.php"
+        ]
+    },
+    "scripts": {
+        "set-license-header": [
+            "@php ./vendor/bin/header-stamp --license=\"assets/afl.txt\" --exclude=\".github,vendor\""
+        ]
+    },
+    "require-dev": {
+        "prestashop/php-dev-tools": "~3.0"
+    },
+    "author": "PrestaShop"
 }

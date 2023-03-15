@@ -1,5 +1,4 @@
-<?php
-/**
+{**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
  *
@@ -16,13 +15,19 @@
  * @author    PrestaShop SA <contact@prestashop.com>
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- */
-header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+ *}
 
-header('Cache-Control: no-store, no-cache, must-revalidate');
-header('Cache-Control: post-check=0, pre-check=0', false);
-header('Pragma: no-cache');
+{extends "$layout"}
 
-header('Location: ../../../../');
-exit;
+{block name="content"}
+  <section id="paymentexample-external" class="card card-block mb-2">
+    <p>{l s='This page simulate an external payment gateway : Order will be created with OrderState "Remote payment accepted".' mod='paymentexample'}</p>
+    <form action="{$action}" method="post" class="form-horizontal mb-1">
+      <div class="text-sm-center">
+        <button type="submit" class="btn btn-primary">
+          {l s='Pay' mod='paymentexample'}
+        </button>
+      </div>
+    </form>
+  </section>
+{/block}
