@@ -56,10 +56,19 @@ class PaymentExampleAccountModuleFrontController extends ModuleFrontController
                     (int) $orderPayment['id_currency']
                 );
 
-                $orderPayments[$key]['date_formatted'] = Tools::displayDate(
-                    $orderPayment['date_add'],
-                    true
-                );
+                if (version_compare(_PS_VERSION_, '>=', '8')) {
+                    $formattedDate = Tools::displayDate(
+                        $orderPayment['date_add'],
+                        true
+                    );
+                } else {
+                    $formattedDate = Tools::displayDate(
+                        $orderPayment['date_add'],
+                        (int) $this->context->language->id,
+                        true
+                    );
+                }
+                $orderPayments[$key]['date_formatted'] = $formattedDate;
             }
         }
 
