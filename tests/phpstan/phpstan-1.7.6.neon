@@ -13,3 +13,4 @@ parameters:
     - '#Property TabCore\:\:\$name \(string\) does not accept array<string>.#'
     - '#Parameter \#2 \$currency of static method ToolsCore\:\:displayPrice\(\) expects array\|object\|null, int given.#'
     - '#Property ModuleCore\:\:\$version \(float\) does not accept string.#'
+    - '#Parameter \#2 \$id_lang of static method ToolsCore\:\:displayDate\(\) expects int\|null, true given.#'
